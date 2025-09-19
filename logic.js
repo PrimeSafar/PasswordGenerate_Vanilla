@@ -29,18 +29,22 @@ function Generate(length) {
     return password;
 }
 
-// Event listener
 document.addEventListener("DOMContentLoaded", () => {
     const generateBtn = document.getElementById("generateBtn");
+    let currentPassword = "";
+
     generateBtn.addEventListener("click", () => {
-        const pwd = Generate(18); 
-       
-        passwordDisplay.textContent = pwd;
+        currentPassword = Generate(18); 
+        passwordDisplay.textContent = currentPassword;
     });
-     copyBtn.addEventListener('click',()=>{
-            copyTextToClipboard(pwd)
-        })
+
+    copyBtn.addEventListener('click', () => {
+        if (currentPassword) {
+            copyTextToClipboard(currentPassword);
+        }
+    });
 });
+
 
 async function copyTextToClipboard(text) {
   try {
