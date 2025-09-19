@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Password Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f3e5ab 0%, #f7e7c4 50%, #f9f1d9 100%);
+            min-height: 100vh;
+            color: #5a4a42;
+        }
+        .card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 253, 245, 0.92);
+            box-shadow: 0 15px 35px rgba(90, 74, 66, 0.12);
+            border-radius: 18px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(90, 74, 66, 0.1);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(90, 74, 66, 0.15);
+        }
+        .btn-generate {
+            background: linear-gradient(135deg, #d4b78c 0%, #b08d57 100%);
+            color: #fff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(176, 141, 87, 0.25);
+        }
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(176, 141, 87, 0.35);
+            background: linear-gradient(135deg, #b08d57 0%, #9c7a4b 100%);
+        }
+        .password-display {
+            letter-spacing: 1.5px;
+            font-family: 'Courier New', monospace;
+            color: #5a4a42;
+        }
+        .footer-link {
+            transition: all 0.3s ease;
+            color: #8c7b6e !important;
+        }
+        .footer-link:hover {
+            color: #b08d57 !important;
+            transform: translateY(-2px);
+        }
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+        }
+        .checkbox:checked {
+            background-color: #b08d57;
+            border-color: #b08d57;
+        }
+        .icon-container {
+            background: rgba(176, 141, 87, 0.15);
+        }
+        .copy-btn {
+            transition: all 0.2s ease;
+        }
+        .copy-btn:hover {
+            color: #b08d57;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="text-center py-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-amber-900">Vanilla Password Generator</h1>
+        <p class="text-amber-800 mt-2 opacity-80">Created with Vanilla JavaScript</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center px-4">
+        <div class="card max-w-md w-full p-8">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 icon-container rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-lock text-3xl text-amber-800"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-amber-900">Generate Secure Password</h2>
+                <p class="text-amber-700 mt-2">Create strong and unique passwords</p>
+            </div>
+
+            <!-- Password Display -->
+            <div class="bg-amber-50 rounded-lg p-4 mb-6 flex items-center justify-between border border-amber-100">
+                <div class="password-display text-amber-900 font-medium text-lg" id="passwordDisplay">
+                    Click the button to generate
+                </div>
+                <button id="copyBtn" class="copy-btn text-amber-700 hover:text-amber-900">
+                    <i class="fas fa-copy text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Options Form -->
+            <form class="space-y-6">
+                <!-- Options -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex items-center">
+                        <input id="uppercase" type="checkbox" class="checkbox h-4 w-4 text-amber-700 focus:ring-amber-500 border-gray-300 rounded" checked>
+                        <label for="uppercase" class="ml-2 block text-sm text-amber-800">Uppercase</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="lowercase" type="checkbox" class="checkbox h-4 w-4 text-amber-700 focus:ring-amber-500 border-gray-300 rounded" checked>
+                        <label for="lowercase" class="ml-2 block text-sm text-amber-800">Lowercase</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="numbers" type="checkbox" class="checkbox h-4 w-4 text-amber-700 focus:ring-amber-500 border-gray-300 rounded" checked>
+                        <label for="numbers" class="ml-2 block text-sm text-amber-800">Numbers</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="symbols" type="checkbox" class="checkbox h-4 w-4 text-amber-700 focus:ring-amber-500 border-gray-300 rounded">
+                        <label for="symbols" class="ml-2 block text-sm text-amber-800">Symbols</label>
+                    </div>
+                </div>
+
+                
+
+                <!-- Generate Button -->
+                <button type="button" id="generateBtn"  class="btn-generate w-full py-3 px-4 rounded-lg font-semibold text-lg flex items-center justify-center">
+                    <i class="fas fa-key mr-2"></i>
+                    Generate Password
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center">
+        <div class="flex justify-center space-x-12 mb-4">
+            <a href="https://github.com/PrimeSafar" class="footer-link"><i class="fab fa-github text-xl"></i></a>
+        </div>
+        <p class="text-amber-700 opacity-80">© 2025 Vanilla Password Generator. All rights reserved.</p>
+    </footer>
+    </body>
+    <script src="logic.js"></script>
+</html>
