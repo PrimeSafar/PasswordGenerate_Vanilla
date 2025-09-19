@@ -34,11 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const generateBtn = document.getElementById("generateBtn");
     generateBtn.addEventListener("click", () => {
         const pwd = Generate(18); 
-        copyBtn.addEventListener('click',()=>{
-            copyTextToClipboard(pwd)
-        })
+       
         passwordDisplay.textContent = pwd;
     });
+     copyBtn.addEventListener('click',()=>{
+            copyTextToClipboard(pwd)
+        })
 });
 
 async function copyTextToClipboard(text) {
